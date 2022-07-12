@@ -2,7 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Consumer;
 use App\Http\Middleware\Localization;
+use App\Http\Middleware\Merchant;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,5 +67,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'localization' => Localization::class,
+        'consumer' => Consumer::class,
+        'merchant' => Merchant::class,
+
     ];
 }
