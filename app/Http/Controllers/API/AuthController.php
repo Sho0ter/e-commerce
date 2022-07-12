@@ -34,7 +34,7 @@ class AuthController extends BaseController
         $success['token'] = $user->createToken('api')->plainTextToken;
         $success['name'] = $user->name;
 
-        return $this->sendResponse($success, 'User register successfully.');
+        return $this->sendResponse($success, __('auth.success_register'));
     }
 
     /**
@@ -49,9 +49,9 @@ class AuthController extends BaseController
             $success['token'] = $user->createToken('api')->plainTextToken;
             $success['name'] = $user->name;
 
-            return $this->sendResponse($success, 'User login successfully.');
+            return $this->sendResponse($success, __('auth.success_login'));
         } else {
-            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+            return $this->sendError('Unauthorised.', ['error' => __('auth.failed')]);
         }
     }
 

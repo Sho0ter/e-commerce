@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'success_register' => 'User Register Successfully.',
-    'success_login' => 'User Login Successfully.'
+    'failed' => 'البيانات المدخلة غير متوافقة ',
+    'password' => 'كلمة المرور غير صحيحة',
+    'throttle' => 'العديد من محاولات الدخول برجاء الأنتظار  :seconds ثانية.',
+    'success_register' => 'تم تسجيل الحساب بنجاح',
+    'success_login' => 'تم تسجيل الدخول بنجاح'
 
 ];
