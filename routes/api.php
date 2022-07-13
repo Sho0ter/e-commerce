@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\API\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +41,6 @@ Route::middleware("localization")->group(function () {
     Route::middleware(['auth:sanctum', 'merchant'])->group(function () {
         //CRUD operation for products.
         //update own store info.
-
+        Route::put('/stores/update', [StoreController::class, 'update']);
     });
 });
