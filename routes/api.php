@@ -3,8 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\CartController as APICartController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\StoreController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,14 +36,11 @@ Route::middleware("localization")->group(function () {
     });
 
     Route::middleware(['auth:sanctum', 'consumer'])->group(function () {
-        // can add products to cart. 
-        // processing order.
-
+        Route::get('products/list', [ProductController::class, 'list_products']);
+        Route::resource('carts', APICartController::class);
     });
 
     Route::middleware(['auth:sanctum', 'merchant'])->group(function () {
-        //CRUD operation for products.
-        //update own store info.
         Route::put('/stores/update', [StoreController::class, 'update']);
         Route::resource('/products', ProductController::class);
     });

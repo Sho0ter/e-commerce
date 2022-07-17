@@ -7,6 +7,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -49,7 +51,8 @@ class Handler extends ExceptionHandler
             if ($request->is('api/*')) {
                 return response()->json([
                     'success' => false,
-                    'message' => __('general.record_not_found')
+                    'message' => __('general.record_not_found'),
+                    'error'   => $e
                 ], 404);
             }
         });
@@ -58,8 +61,20 @@ class Handler extends ExceptionHandler
             if ($request->is('api/*')) {
                 return response()->json([
                     'success' => false,
-                    'message' => __('general.method_not_allowed')
+                    'message' => __('general.method_not_allowed'),
+                    'error'   => $e
                 ], 405);
+            }
+        });
+
+
+        $this->renderable(function (AccessDeniedHttpException $e, $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('general.not_authorized'),
+                    'error'   => $e
+                ], 403);
             }
         });
 

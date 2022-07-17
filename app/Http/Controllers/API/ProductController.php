@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends BaseController
 {
+
+    public function list_products()
+    {
+        $products = Product::where('display', 1)->paginate(10);
+        return $this->sendResponse($products, __('product.success_show'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +22,6 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        $user = Auth::user();
         $store_id = Auth::user()->store->id;
         $products = Product::where('store_id', $store_id)->paginate(10);
         return $this->sendResponse($products, __('product.success_show'));
