@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\StoreController;
 
 /*
@@ -42,5 +43,6 @@ Route::middleware("localization")->group(function () {
         //CRUD operation for products.
         //update own store info.
         Route::put('/stores/update', [StoreController::class, 'update']);
+        Route::resource('/products', ProductController::class);
     });
 });
