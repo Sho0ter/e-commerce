@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\StoreController;
 use App\Http\Controllers\CartController;
@@ -37,6 +38,7 @@ Route::middleware("localization")->group(function () {
     Route::middleware(['auth:sanctum', 'consumer'])->group(function () {
         Route::get('products/list', [ProductController::class, 'list_products']);
         Route::resource('carts', CartController::class);
+        Route::resource('orders', OrderController::class);
     });
 
     Route::middleware(['auth:sanctum', 'merchant'])->group(function () {

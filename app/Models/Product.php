@@ -30,6 +30,10 @@ class Product extends Model
         'store_id',
         'display'
     ];
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
 
     protected function getNameLocaleAttribute()
     {

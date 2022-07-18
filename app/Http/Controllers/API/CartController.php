@@ -24,7 +24,7 @@ class CartController extends BaseController
     public function index()
     {
         $cart = Cart::where('user_id', Auth::user()->id)->where('status', 'pending')->with(['product'])->get();
-        return $this->sendResponse($cart, __('cart.success_add'));
+        return $this->sendResponse($cart, __('cart.success_show'));
     }
 
     /**
@@ -91,7 +91,7 @@ class CartController extends BaseController
         $data['price'] = $product->price;
         $data['total_price'] = $product->price * $request->quantity;
         $cart->update($data);
-        return $this->sendResponse($cart, __('cart.success_add'));
+        return $this->sendResponse($cart, __('cart.success_update'));
     }
 
     /**
